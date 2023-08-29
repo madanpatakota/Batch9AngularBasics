@@ -1,0 +1,152 @@
+<div>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item p-4 border-bottom border-info">
+            <h3 class="bullet-icon">String interpolation</h3>
+            <div class="mt-4">{{ ProjectName }} and {{ title }}</div>
+            <div class="mt-4">
+              {{ getCustomerName() }}
+            </div>
+          </li>
+
+          <li class="list-group-item p-4 border-bottom border-info">
+            <h3 class="bullet-icon">Property Data binding</h3>
+
+            <div class="row">
+              <div class="col-md-6">
+                <input class="form-control mt-4" type="text" value="Admin" />
+              </div>
+              <div class="col-md-6">
+                <input
+                  class="form-control mt-4"
+                  type="text"
+                  [value]="employeeRole"
+                />
+              </div>
+              <div class="col-md-6">
+                <input class="form-check-input mt-4" [type]="inputType" />
+              </div>
+
+              <!-- diabled false is notthing but enable -->
+              <div class="col-md-6">
+                <input
+                  class="form-check-input mt-4"
+                  [type]="inputType"
+                  [disabled]="isDisabled"
+                />
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item p-4 border-bottom border-info">
+            <h3 class="bullet-icon">Event Data binding</h3>
+            <div class="row">
+              <div class="col-md-6 mt-4">
+                <button class="btn btn-primary" (click)="buttonClick()">
+                  Click
+                </button>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mt-4">
+                <input
+                  (keypress)="textKeyEvent($event)"
+                  class="form-control mt-4"
+                  type="text"
+                  placeholder="Enter any key(key press)..."
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mt-4">
+                <input
+                  (keyup)="textKeyEvent($event)"
+                  class="form-control mt-4"
+                  type="text"
+                  placeholder="Enter any key(key up)..."
+                />
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item p-4 border-bottom border-info">
+            <h3 class="bullet-icon">
+              Handling the Event Data binding and Property Data binding together
+              in same element
+            </h3>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item p-4">
+                <h6>HTML DOM with (keyup) and [value]</h6>
+                <div class="row mt-4">
+                  <div class="col-6">
+                    <input
+                      placeholder="Enter Location......"
+                      class="form-control"
+                      type="text"
+                      (keyup)="evtCustomerLoctionKeyUp($event)"
+                      [value]="CustomerPeterLocation"
+                    />
+                  </div>
+                  <div class="col-6">
+                      <p class="text-primary mt-auto">{{CustomerPeterLocation}}</p>
+                  </div>
+                </div>
+              </li>
+
+              <li class="list-group-item p-4">
+                <h6>Angular with (ngmodelChange) and [ngModel]</h6>
+                <div class="row mt-4">
+                  <div class="col-6">
+                    <input
+                      placeholder="Enter Location......"
+                      class="form-control"
+                      type="text"
+                      (ngModelChange)="evtCustomerLoctionModelChange($event)"
+                      [ngModel]="CustomerJohnLocation"
+                    />
+                  </div>
+                  <div class="col-6">
+                      <p class="text-primary mt-auto">{{CustomerJohnLocation}}</p>
+                  </div>
+                </div>
+              </li>
+
+
+              <li class="list-group-item p-4">
+                <h6>Two Way data binding [()] = event data binding () + property databinding []</h6>
+                <div class="row mt-4">
+                  <div class="col-md-3">
+                    <input
+                      placeholder="Guest Name......"
+                      class="form-control"
+                      type="text"
+                      [(ngModel)] = "guestName"
+                    />
+                  </div>
+                  <div class="col-md-3">
+                    <input
+                      placeholder="Guest Location Name......"
+                      class="form-control"
+                      type="text"
+                      [(ngModel)] = "guestLocation"
+                    />
+                  </div>
+                  <div class="col-6">
+                      <p class="text-primary mt-auto">
+                        Hello I am your guest . My Name is  
+                        <span class="fs-4">{{guestName}}</span> and i am from 
+                        <span class="fs-4">{{guestLocation}}</span></p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
