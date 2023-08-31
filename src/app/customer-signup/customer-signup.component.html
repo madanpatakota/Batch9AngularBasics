@@ -157,6 +157,116 @@ ngClass -->
             ></div>
           </div>
         </li>
+
+        <!--ngIf-->
+        <li class="list-group-item p-4 border-bottom border-info">
+          <div class="row">
+            <h3 class="d-inline-flex">ngIf Directive</h3>
+            <span> (Display content based on the condition) </span>
+          </div>
+          <div class="row mt-4">
+            <div class="col-12">
+              <p *ngIf="customerEligibility" class="text-success">
+                Secreat Key : 1@#JHJGF*(K
+              </p>
+            </div>
+          </div>
+        </li>
+
+        <!--Local Ref Variables-->
+        <li class="list-group-item p-4 border-bottom border-info">
+          <div class="row">
+            <h3 class="d-inline-flex">Local Ref Variable</h3>
+            <span> (Which is use for ref the element) </span>
+          </div>
+          <div class="row mt-4">
+            <div class="col-2">
+              <p class="text-danger" #question>Hey !! How are you doing?</p>
+            </div>
+            <div class="col-1">
+              <button class="btn btn-primary" (click)="btnClick(question)">
+                Click
+              </button>
+            </div>
+            <div class="col-2">
+              <p class="text-success">{{ myAnswer }}</p>
+            </div>
+          </div>
+        </li>
+
+        <!--ngTemplate Variables-->
+        <li class="list-group-item p-4 border-bottom border-info">
+          <div class="row">
+            <h3 class="d-inline-flex">ngTemplate Element</h3>
+            <span>
+              (By default ngTemplate Would't render|process to the HTML
+              DOM)</span
+            >
+            <div class="row mt-4">
+              <ng-template>
+                <p class="text-success">Secreat Key : 1@#JHJGF*(K</p>
+              </ng-template>
+            </div>
+          </div>
+        </li>
+
+        <!-- ngIf Local Ref Variables ngTemplate Variables
+     Task : Client is asking to me if customer is having the eligiblity  then show secreat key
+                                 else  customer is having the eligiblity  then show not eligible.
+  -->
+        <li class="list-group-item p-4 border-bottom border-info">
+          <div class="row">
+            <h3 class="d-inline-flex">
+              ngIf Local Ref Variables ngTemplate Variables
+            </h3>
+            <span> (ngif and else conditions) </span>
+          </div>
+          <div class="row mt-4">
+            <div class="col-12">
+              <p
+                *ngIf="customerIsAdmin; else NoEligibleTemplate"
+                class="text-success"
+              >
+                Secreat Key : 1@#JHJGF*(K
+              </p>
+
+              <ng-template #NoEligibleTemplate>
+                <p class="text-warning">Not eligible</p>
+              </ng-template>
+            </div>
+          </div>
+        </li>
+
+
+        <!--ngFor-->
+
+        <li class="list-group-item p-4 border-bottom border-info">
+          <div class="row">
+            <h3 class="d-inline-flex">ngFor Directive</h3>
+            <span> (Which is useful for print the list of the values) </span>
+          </div>
+          <div class="row mt-4">
+            <div class="row">
+              <div class="col-6">
+               <ul class="list-group list-group-flush">
+                   <li class="list-group-item">He Likes the Non Veg Food</li>
+                   <li class="list-group-item">He dislike in Reception the way they talk in Restaurent</li>
+                   <li class="list-group-item">He went with his 4 freinds</li>
+                </ul>
+              </div>
+            
+            
+              <div class="col-6">
+               <ul class="list-group list-group-flush">
+                   <li class="list-group-item text-primary" 
+                   *ngFor="let exp of customerExperience ; let $index = index">
+                    {{$index}} : {{exp}}
+                   </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
       </ul>
     </div>
   </div>

@@ -19,6 +19,35 @@ export class CustomerSignupComponent {
     /*ngClass*/
      employeeStatus  = false;
 
+    
+    /*ngIf*/
+    customerEligibility = false;
+
+
+
+    /*Local Reference */
+    myAnswer  = "";
+    btnClick(question:HTMLParagraphElement){
+      if(question.innerText == "Hey !! How are you doing?"){
+        this.myAnswer = " I am Excellent !!!!";
+      }
+    }
+
+
+    /*ngIf else ngtemplate local*/
+    customerIsAdmin = true;
+
+
+
+    /*ngFor*/
+
+    customerExperience = [
+      'He Likes the Non Veg Food',
+      'He dislike in Reception the way they talk in Restaurent',
+      'He went with his 4 freinds'
+    ];
+
+
 
 
 }
