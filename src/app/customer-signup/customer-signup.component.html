@@ -237,9 +237,7 @@ ngClass -->
           </div>
         </li>
 
-
-        <!--ngFor-->
-
+        <!--ngFor(Collection of strings)-->
         <li class="list-group-item p-4 border-bottom border-info">
           <div class="row">
             <h3 class="d-inline-flex">ngFor Directive</h3>
@@ -248,25 +246,70 @@ ngClass -->
           <div class="row mt-4">
             <div class="row">
               <div class="col-6">
-               <ul class="list-group list-group-flush">
-                   <li class="list-group-item">He Likes the Non Veg Food</li>
-                   <li class="list-group-item">He dislike in Reception the way they talk in Restaurent</li>
-                   <li class="list-group-item">He went with his 4 freinds</li>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">He Likes the Non Veg Food</li>
+                  <li class="list-group-item">
+                    He dislike in Reception the way they talk in Restaurent
+                  </li>
+                  <li class="list-group-item">He went with his 4 freinds</li>
                 </ul>
               </div>
-            
-            
+
               <div class="col-6">
-               <ul class="list-group list-group-flush">
-                   <li class="list-group-item text-primary" 
-                   *ngFor="let exp of customerExperience ; let $index = index">
-                    {{$index}} : {{exp}}
-                   </li>
+                <ul class="list-group list-group-flush">
+                  <li
+                    class="list-group-item text-primary"
+                    *ngFor="let exp of customerExperience; let $index = index"
+                  >
+                    {{ $index }} : {{ exp }}
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
         </li>
+
+        <!--ngFor(Collection of objects)-->
+        <li class="list-group-item p-4 border-bottom border-info">
+          <div class="row">
+            <h3 class="d-inline-flex">ngFor Directive</h3>
+            <span> (Which is useful for print the list of the values) </span>
+          </div>
+          <div class="row mt-4">
+            <div class="col-6">
+              <ul class="list-group list-group-flush">
+                <li
+                  class="list-group-item text-primary"
+                  *ngFor="let customer of customersList"
+                >
+                  <span class="text-center">
+                     {{ customer.name }}     Lives in 
+                     {{ customer.location }} and his/her job role is
+                     {{ customer.Job  }}
+                     </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+          <!--ngSwitch-->
+          <li class="list-group-item p-4 border-bottom border-info">
+            <div class="row">
+              <h3 class="d-inline-flex">ngSwitch Directive</h3>
+              <span> (Which is useful for to display the content based on your case) </span>
+            </div>
+            <div class="row mt-4">
+              <div class="col-12">
+                 <div [ngSwitch]="customerID">
+                  <p  *ngSwitchCase="1" class="text-success">John Smith Lives in London and his/her job role is Sales Rep</p>
+                  <p  *ngSwitchCase="2" class="text-success">Robert Frost Lives in New yark and his/her job role is Hotel Chef</p>
+                  <p  *ngSwitchCase="3" class="text-success">Peter moore Lives in Colombo and his/her job role is Car Driver</p>
+                  <p  *ngSwitchDefault="" class="text-warning">Unable to find any User</p>
+                </div>
+              </div>
+            </div>
+          </li>
       </ul>
     </div>
   </div>
