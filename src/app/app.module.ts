@@ -6,13 +6,15 @@ import { CompAComponent } from './comp-a/comp-a.component';
 import { FormsModule } from '@angular/forms';
 import { CustomerSignupComponent } from './customer-signup/customer-signup.component';
 import { NgBindingComponent } from './ng-binding/ng-binding.component';
+import { CompBComponent } from './comp-b/comp-b.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompAComponent,
     CustomerSignupComponent,
-    NgBindingComponent
+    NgBindingComponent,
+    CompBComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,62 @@
+<!-- View child
+Gives the element of view reference in the typescript file
+with the help of view referece name -->
+<div style="width: 200em" class="container mt-5">
+  <div class="row">
+    <ul class="list-group list-group-flush">
+      <!--ViewhChild-->
+      <li class="list-group-item p-4 border-bottom border-info">
+        <div class="row">
+          <h3 class="d-inline-flex">ViewChild</h3>
+          <span>
+            Gives the Element of View Reference in the typescript file with the
+            help of referece name
+          </span>
+        </div>
+        <div class="row mt-4">
+          <div class="col-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Customer Name"
+              #customerName
+            />
+          </div>
+          <div class="col-2">
+            <button class="btn btn-primary" (click)="btnClick()">Click</button>
+          </div>
+          <div class="col-4" *ngIf="isCustomerHavingData">
+            <p>
+              You have entered :
+              <span class="font-monospace"> {{ displayName }} </span>
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <!--ContentChild-->
+      <li class="list-group-item p-4 border-bottom border-info">
+        <div class="row">
+          <h3 class="d-inline-flex">ContentChild</h3>
+          <span>
+            Gives the Element of Content Reference in the typescript file with
+            the help of referece name
+          </span>
+        </div>
+        <div class="row mt-4">
+          <div class="col-4">
+            <!-- Executes the content of the component-->
+            <ng-content></ng-content>
+            <!-- <ng-content select="[jobtitle]"></ng-content> -->
+          </div>
+          <div class="col-2">
+            <button class="btn btn-primary">Click</button>
+          </div>
+          <div class="col-4">
+            <p>You have entered : <span class="font-monospace"> </span></p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
