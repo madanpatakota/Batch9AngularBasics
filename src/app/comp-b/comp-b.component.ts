@@ -1,4 +1,11 @@
-import { Component, ContentChild, ElementRef, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  ElementRef,
+  TemplateRef,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 
 @Component({
   selector: 'app-comp-b',
@@ -9,19 +16,16 @@ export class CompBComponent {
   // i am going to take the textbox reference
   // then i will get the value.
 
-  @ViewChild('customerName') vCustomerName   : ElementRef<any>;
+  @ViewChild('customerName') vCustomerName: ElementRef<any>;
   //              var          customername  :  string
-
-  
 
   displayName = '';
 
   isCustomerHavingData = false;
   // 1. Viewchild which is useful for capture the element in the typescript file
-  
+
   //Q) How do you take the value from element?
   // A : you have to get the nativelement from the viewchild
-
 
   btnClick() {
     //console.log("you have entered the value :");
@@ -33,7 +37,7 @@ export class CompBComponent {
       this.vCustomerName.nativeElement.value
     );
 
-    let elValue = this.vCustomerName.nativeElement.value;   // textbox value
+    let elValue = this.vCustomerName.nativeElement.value; // textbox value
     if (elValue.length > 0) {
       this.isCustomerHavingData = true;
       this.displayName = elValue;
@@ -42,33 +46,68 @@ export class CompBComponent {
     }
   }
 
- 
- /*ContentChild*/
- /*content of the compoennt*/
-  displayEmployeeName = "";
-  @ContentChild('employeeName') vEmployeeName : ElementRef<any>;
-  evtGetEmployeeName(){
-     this.displayEmployeeName =  this.vEmployeeName.nativeElement.value
+  /*ContentChild*/
+  /*content of the compoennt*/
+  displayEmployeeName = '';
+  @ContentChild('employeeName') vEmployeeName: ElementRef<any>;
+  evtGetEmployeeName() {
+    this.displayEmployeeName = this.vEmployeeName.nativeElement.value;
   }
-
-
 
   /* ngContainer */
-  numbers = [1,2,3,4];
-
+  numbers = [1, 2, 3, 4];
 
   /* templareRef */
-  @ViewChild('CustomerTemplate') vCustomerTemplate : TemplateRef<any>;
-  @ViewChild('CustomerName') vCustomerNameelement  : ElementRef<any>;
-
+  @ViewChild('CustomerTemplate') vCustomerTemplate: TemplateRef<any>;
+  @ViewChild('CustomerName') vCustomerNameelement: ElementRef<any>;
   //displayCustom
-  displayCustomerTemplate : TemplateRef<any>;
- 
-  btnGetCustomerTemplate(){
-     let customerTemplate =  this.vCustomerTemplate;
-     this.displayCustomerTemplate = customerTemplate;
-     console.log(this.displayCustomerTemplate);
+  displayCustomerTemplate: TemplateRef<any>;
+  btnGetCustomerTemplate() {
+    let customerTemplate = this.vCustomerTemplate;
+    this.displayCustomerTemplate = customerTemplate;
+    console.log(this.displayCustomerTemplate);
   }
+
+  /* Dynamic template load in ngcontainer */
+  @ViewChild('CustomerMessageContainer', { read: ViewContainerRef })
+  vCustomerMessageContainer: ViewContainerRef;
+
+  @ViewChild('CustomerMessageTemplate', { read: TemplateRef })
+  vCustomerMessageTemplate: TemplateRef<any>;
+
+  btnGenerateTemplate() {
+    /*Viewcontainerref */
+    //  you have to host | deploy | embed the view(template)
+    //  into the container
+    // host = deploy = embed = insert
+    this.vCustomerMessageContainer.insert(
+      this.vCustomerMessageTemplate.createEmbeddedView(null)
+    );
+  }
+
+
+//=================================
+  /* Dynamic template load in ngcontainer (With Data) */
+@ViewChild('CustomerFamilyContainer', { read: ViewContainerRef })
+vCustomerFamilyContainer: ViewContainerRef;
+
+@ViewChild('CustomerSpouseNameTemplate', { read: TemplateRef })
+vCustomerSpouseNameTemplate: TemplateRef<any>;
+
+btnGenerateTemplateWithData() {
+  /*Viewcontainerref */
+  //  you have to host | deploy | embed the view(template)
+  //  into the container
+  // host = deploy = embed = insert
+  this.vCustomerFamilyContainer.insert(
+    this.vCustomerSpouseNameTemplate.createEmbeddedView({'sName' : 'Mery'})
+  );
+}
+
+
+
+
+
 
 
 }

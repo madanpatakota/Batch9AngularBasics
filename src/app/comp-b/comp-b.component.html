@@ -1,7 +1,7 @@
 <!-- View child
 Gives the element of view reference in the typescript file
 with the help of view referece name -->
-<div style="width: 200em ; height: 200em;" class="container mt-5">
+<div style="width: 200em; height: 200em" class="container mt-5">
   <div class="row">
     <ul class="list-group list-group-flush">
       <!--ViewhChild-->
@@ -69,8 +69,8 @@ with the help of view referece name -->
           <h3 class="d-inline-flex">ngContainer</h3>
           <span>
             <p>
-              - Its like a structural directive deploy the templates based on
-              the condition
+              - Its like a structural directive deploy | host the templates
+              based on the condition
             </p>
             <p>- Its like a container which contains the templates</p>
           </span>
@@ -96,39 +96,172 @@ with the help of view referece name -->
         </div>
       </li>
 
-
-
-
-       <!--Template Reference-->
-       <li class="list-group-item p-4 border-bottom border-info">
+      <!--Template Reference-->
+      <li class="list-group-item p-4 border-bottom border-info">
         <div class="row">
           <h3 class="d-inline-flex">TemplateRef</h3>
           <span>
-            <p>
-              which gives the reference of the template in .ts file
-            </p>
+            <p>which gives the reference of the template in .ts file</p>
           </span>
         </div>
         <div class="row mt-4">
           <div class="col-4">
-             <ng-template #CustomerTemplate>
-                   <div>
-                      <input type="text" class="form-control" placeholder="Customer Name" #CustomerName />
-                   </div>
-             </ng-template>
+            <ng-template #CustomerTemplate>
+              <div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Customer Name"
+                  #CustomerName
+                />
+              </div>
+            </ng-template>
           </div>
           <div class="col-2">
-              <button class="btn btn-primary" (click)="btnGetCustomerTemplate()">
-                  Click
-              </button>
+            <button class="btn btn-primary" (click)="btnGetCustomerTemplate()">
+              Click
+            </button>
           </div>
           <p>
             You have entered :
-            <span class="font-monospace">
-               {{ displayCustomerTemplate }} </span>
+            <span class="font-monospace"> {{ displayCustomerTemplate }} </span>
           </p>
         </div>
       </li>
+
+      <!-- ngContainer and ngTemplate -->
+      <li class="list-group-item p-4 border-bottom border-info">
+        <div class="row">
+          <h3 class="d-inline-flex">Manually Load the template</h3>
+          <span>
+            <p></p>
+          </span>
+        </div>
+        <ul class="list-group list-group-flush">
+          <!-- Host Template into Container -->
+          <li class="list-group-item p-4 border-bottom">
+            <div class="row">
+              <div class="col-6">
+                <h6 class="d-inline-flex">Host Template into Container</h6>
+              </div>
+              <div class="col-6">
+                <!-- ngcontainet is useful for to deploy the template -->
+                <ng-container
+                  [ngTemplateOutlet]="CustomerTemplate"
+                ></ng-container>
+                <ng-template #CustomerTemplate>
+                  <div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Customer Name"
+                    />
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </li>
+
+          <!-- Pass data from ngcontainer to ngtemplate -->
+          <li class="list-group-item p-4 border-bottom">
+            <div class="row">
+              <div class="col-6">
+                <h6 class="d-inline-flex">
+                  Pass data from ngcontainer to ngtemplate
+                </h6>
+              </div>
+              <div class="col-6">
+                <!-- ngcontainet is useful for to deploy the template -->
+                <ng-container
+                  [ngTemplateOutlet]="CustomerContextTemplate"
+                  [ngTemplateOutletContext]="{
+                    CustomerPurchaseAmount: '10000'
+                  }"
+                ></ng-container>
+                <ng-template
+                  let-customerAmount="CustomerPurchaseAmount"
+                  #CustomerContextTemplate
+                >
+                  <div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Customer Name"
+                      [value]="customerAmount"
+                    />
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Dynamic template load in ngcontainer -->
+      <li class="list-group-item p-4 border-bottom border-info">
+        <div class="row">
+          <h3 class="d-inline-flex">Dynamic template load in ngcontainer</h3>
+          <span>
+            <p></p>
+          </span>
+        </div>
+        <ul class="list-group list-group-flush">
+          
+         <!-- Container to template(Dynamic) -->
+          <li class="list-group-item p-4 border-bottom">
+            <h6 class="d-inline-flex">Host template into container(Dynamic)</h6>
+            <div class="row mt-4">
+              <div class="col-4">
+                <ng-container #CustomerMessageContainer></ng-container>
+                <ng-template #CustomerMessageTemplate>
+                  <div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Customer Name"
+                    />
+                  </div>
+                </ng-template>
+              </div>
+              <div class="col-4">
+                <button 
+                class="btn btn-primary" (click)="btnGenerateTemplate()">Click</button>
+              </div>
+            </div>
+          </li>
+
+          <!-- Pass data from container to template(Dynamic) -->
+          <li class="list-group-item p-4 border-bottom">
+            <h6>Pass data from container to template(Dynamic)</h6>
+            <div class="row mt-4">
+              <div class="col-4">
+                <ng-container #CustomerFamilyContainer></ng-container>
+                <ng-template let-sName="sName" #CustomerSpouseNameTemplate>
+                  <div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Spouse Name"
+                      [value]="sName"
+                    />
+                  </div>
+                </ng-template>
+              </div>
+              <div class="col-4">
+                <button 
+                class="btn btn-primary" (click)="btnGenerateTemplateWithData()">Click</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </li>
+
+
+      
+
+
+
+
     </ul>
   </div>
 </div>
