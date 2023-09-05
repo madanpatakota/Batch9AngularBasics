@@ -1,7 +1,7 @@
 <!-- View child
 Gives the element of view reference in the typescript file
 with the help of view referece name -->
-<div style="width: 200em" class="container mt-5">
+<div style="width: 200em ; height: 200em;" class="container mt-5">
   <div class="row">
     <ul class="list-group list-group-flush">
       <!--ViewhChild-->
@@ -50,11 +50,83 @@ with the help of view referece name -->
             <!-- <ng-content select="[jobtitle]"></ng-content> -->
           </div>
           <div class="col-2">
-            <button class="btn btn-primary">Click</button>
+            <button class="btn btn-primary" (click)="evtGetEmployeeName()">
+              Click
+            </button>
           </div>
           <div class="col-4">
-            <p>You have entered : <span class="font-monospace"> </span></p>
+            <p>
+              You have entered :
+              <span class="font-monospace"> {{ displayEmployeeName }} </span>
+            </p>
           </div>
+        </div>
+      </li>
+
+      <!--ngContainer-->
+      <li class="list-group-item p-4 border-bottom border-info">
+        <div class="row">
+          <h3 class="d-inline-flex">ngContainer</h3>
+          <span>
+            <p>
+              - Its like a structural directive deploy the templates based on
+              the condition
+            </p>
+            <p>- Its like a container which contains the templates</p>
+          </span>
+        </div>
+        <div class="row mt-4">
+          <div class="col-4">
+            <div
+              *ngFor="let item of numbers"
+              style="background-color: red; margin: 10px"
+            >
+              <p>Hello word {{ item }}</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <ng-container
+              *ngFor="let item of numbers"
+              style="background-color: green; margin: 10px"
+            >
+              <p>Hello word {{ item }}</p>
+            </ng-container>
+          </div>
+          <div class="col-4"></div>
+        </div>
+      </li>
+
+
+
+
+       <!--Template Reference-->
+       <li class="list-group-item p-4 border-bottom border-info">
+        <div class="row">
+          <h3 class="d-inline-flex">TemplateRef</h3>
+          <span>
+            <p>
+              which gives the reference of the template in .ts file
+            </p>
+          </span>
+        </div>
+        <div class="row mt-4">
+          <div class="col-4">
+             <ng-template #CustomerTemplate>
+                   <div>
+                      <input type="text" class="form-control" placeholder="Customer Name" #CustomerName />
+                   </div>
+             </ng-template>
+          </div>
+          <div class="col-2">
+              <button class="btn btn-primary" (click)="btnGetCustomerTemplate()">
+                  Click
+              </button>
+          </div>
+          <p>
+            You have entered :
+            <span class="font-monospace">
+               {{ displayCustomerTemplate }} </span>
+          </p>
         </div>
       </li>
     </ul>

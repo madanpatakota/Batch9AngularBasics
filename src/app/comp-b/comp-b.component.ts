@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ContentChild, ElementRef, TemplateRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-comp-b',
@@ -9,12 +9,20 @@ export class CompBComponent {
   // i am going to take the textbox reference
   // then i will get the value.
 
-  @ViewChild('customerName') vCustomerName: ElementRef<any>;
+  @ViewChild('customerName') vCustomerName   : ElementRef<any>;
   //              var          customername  :  string
+
+  
 
   displayName = '';
 
   isCustomerHavingData = false;
+  // 1. Viewchild which is useful for capture the element in the typescript file
+  
+  //Q) How do you take the value from element?
+  // A : you have to get the nativelement from the viewchild
+
+
   btnClick() {
     //console.log("you have entered the value :");
     //  console.log(this.vCustomerName); // elementref
@@ -33,4 +41,34 @@ export class CompBComponent {
       this.isCustomerHavingData = false;
     }
   }
+
+ 
+ /*ContentChild*/
+ /*content of the compoennt*/
+  displayEmployeeName = "";
+  @ContentChild('employeeName') vEmployeeName : ElementRef<any>;
+  evtGetEmployeeName(){
+     this.displayEmployeeName =  this.vEmployeeName.nativeElement.value
+  }
+
+
+
+  /* ngContainer */
+  numbers = [1,2,3,4];
+
+
+  /* templareRef */
+  @ViewChild('CustomerTemplate') vCustomerTemplate : TemplateRef<any>;
+  @ViewChild('CustomerName') vCustomerNameelement  : ElementRef<any>;
+
+  //displayCustom
+  displayCustomerTemplate : TemplateRef<any>;
+ 
+  btnGetCustomerTemplate(){
+     let customerTemplate =  this.vCustomerTemplate;
+     this.displayCustomerTemplate = customerTemplate;
+     console.log(this.displayCustomerTemplate);
+  }
+
+
 }
